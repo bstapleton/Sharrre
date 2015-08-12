@@ -271,13 +271,28 @@
       fb = window.setInterval(function(){
         if (typeof FB !== 'undefined') {
           FB.Event.subscribe('edge.create', function(targetUrl) {
-            _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+            ga('send', 'social', {
+              socialNetwork: 'facebook',
+              socialAction: 'like',
+              socialTarget: targetUrl
+            });
+            //_gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
           });
           FB.Event.subscribe('edge.remove', function(targetUrl) {
-            _gaq.push(['_trackSocial', 'facebook', 'unlike', targetUrl]);
+            ga('send', 'social', {
+              socialNetwork: 'facebook',
+              socialAction: 'unlike',
+              socialTarget: targetUrl
+            });
+            //_gaq.push(['_trackSocial', 'facebook', 'unlike', targetUrl]);
           });
           FB.Event.subscribe('message.send', function(targetUrl) {
-            _gaq.push(['_trackSocial', 'facebook', 'send', targetUrl]);
+            ga('send', 'social', {
+              socialNetwork: 'facebook',
+              socialAction: 'send',
+              socialTarget: targetUrl
+            });
+            //_gaq.push(['_trackSocial', 'facebook', 'send', targetUrl]);
           });
           //console.log('ok');
           clearInterval(fb);
@@ -290,7 +305,11 @@
         if (typeof twttr !== 'undefined') {
           twttr.events.bind('tweet', function(event) {
             if (event) {
-              _gaq.push(['_trackSocial', 'twitter', 'tweet']);
+              ga('send', 'social', {
+                socialNetwork: 'twitter',
+                socialAction: 'tweet'
+              });
+              //_gaq.push(['_trackSocial', 'twitter', 'tweet']);
             }
           });
           //console.log('ok');
@@ -301,6 +320,10 @@
     digg: function(){
       //if somenone find a solution, mail me !
       /*$(this.element).find('.digg').on('click', function(){
+       ga('send', 'social', {
+         socialNetwork: 'digg',
+         socialAction: 'add'
+       });
         _gaq.push(['_trackSocial', 'digg', 'add']);
       });*/
     },
@@ -308,7 +331,11 @@
     stumbleupon: function(){},
     linkedin: function(){
       function LinkedInShare() {
-        _gaq.push(['_trackSocial', 'linkedin', 'share']);
+        ga('send', 'social', {
+          socialNetwork: 'linkedin',
+          socialAction: 'share'
+        });
+        //_gaq.push(['_trackSocial', 'linkedin', 'share']);
       }
     },
     pinterest: function(){
